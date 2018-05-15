@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./src/",
+        "target": "esnext",
+        "module": "esnext",
+        "sourceMap": true,
+        "removeComments": false,
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+        "jsx": "react",
+        "allowJs": true,
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "rootDirs": [
+            "./src",
+            "./styles"
+        ],
+        "paths": {
+            "*": [
+                "*"
+            ]
+        }
+    },
+    "exclude": [
+        "./node_modules/**/*",
+        "./tests/*"
+    ]
+}

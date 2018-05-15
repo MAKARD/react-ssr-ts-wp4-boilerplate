@@ -1,0 +1,11 @@
+/.idea/
+npm-debug.log
+/node_modules/
+/web/
+/tests/acceptance/*.js
+/tests/acceptance/*.js.map
+/.nyc_output/
+.DS_Store
+./**/.DS_Store
+logs/
+build/

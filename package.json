@@ -1,0 +1,61 @@
+{
+  "scripts": {
+    "build": "NODE_ENV=production webpack --mode production --config=./webpack/webpack.frontend.js",
+    "start": "webpack-dev-server --config ./webpack/webpack.frontend.js",
+    "serve": "npm run build && npm run build:server && ./index.js",
+    "lint": "./node_modules/.bin/tslint --exclude '**/*.js' --project ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MAKARD/react-ssr-ts-wp4-boilerplate.git"
+  },
+  "keywords": [
+    "React",
+    "TypeScript",
+    "SSR",
+    "Webpack"
+  ],
+  "bugs": {
+    "url": "https://github.com/MAKARD/react-ssr-ts-wp4-boilerplate/issues"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "homepage": "https://github.com/MAKARD/react-ssr-ts-wp4-boilerplate#readme",
+  "devDependencies": {
+    "@types/express": "^4.11.1",
+    "@types/prop-types": "^15.5.2",
+    "@types/react-dom": "^16.0.5",
+    "@types/react-router": "^4.0.25",
+    "@types/react-router-dom": "^4.2.6",
+    "pre-commit": "^1.2.2",
+    "ts-node": "^6.0.3",
+    "tslint": "^5.10.0",
+    "tslint-react": "^3.6.0",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.0.0-beta.47",
+    "@babel/core": "^7.0.0-beta.47",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.47",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.47",
+    "@babel/plugin-transform-modules-commonjs": "^7.0.0-beta.47",
+    "@babel/plugin-transform-runtime": "^7.0.0-beta.47",
+    "@babel/polyfill": "^7.0.0-beta.47",
+    "@babel/preset-env": "^7.0.0-beta.47",
+    "@babel/preset-react": "^7.0.0-beta.47",
+    "@babel/preset-typescript": "^7.0.0-beta.47",
+    "@types/node": "^10.0.9",
+    "@types/react": "^16.3.14",
+    "babel-loader": "^8.0.0-beta.2",
+    "express": "^4.16.3",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "typescript": "^2.8.3",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3"
+  }
+}
