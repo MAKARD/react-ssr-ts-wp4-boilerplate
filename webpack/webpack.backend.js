@@ -1,6 +1,6 @@
-const path = requrie("path");
+const path = require("path");
 
-const CleanWebpackPlugin = requrie("clean-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 const commonConfig = require("./webpack.common");
 
@@ -14,10 +14,10 @@ module.exports = {
         filename: "server.js"
     },
     externals: ["express"],
-    devtool: "source-map",
     target: "node",
     module: {
         rules: [
+            ...commonConfig.module.rules,
             {
                 test: /\.(gif|png|jpe?g|svg|css)$/i,
                 loader: 'file-loader',
@@ -29,6 +29,7 @@ module.exports = {
         ]
     },
     plugins: [
+        ...commonConfig.plugins,
         new CleanWebpackPlugin([path.resolve("./build")], {
             root: path.resolve(".")
         })

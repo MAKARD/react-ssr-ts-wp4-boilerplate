@@ -10,6 +10,7 @@
             true,
             "never"
         ],
+        "no-console": false,
         "jsx-no-multiline-js": false,
         "only-arrow-functions": false,
         "space-before-function-paren": false,

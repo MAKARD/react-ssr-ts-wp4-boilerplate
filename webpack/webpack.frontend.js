@@ -1,8 +1,9 @@
-const path = requrie("path");
+const path = require("path");
 const Webpack = require("webpack");
 
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
-const CleanWebpackPlugin = requrie("clean-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const meta = require("../meta.json");
@@ -28,8 +29,14 @@ module.exports = {
     entry: [
         path.resolve("./src/index.tsx")
     ],
+    output: {
+        filename: `[name].v${meta.version}.js`,
+        path: path.resolve("./web"),
+        publicPath: debug ? "/" : "/static/"
+    },
     module: {
         rules: [
+            ...commonConfig.module.rules,
             {
                 test: /\.(css|scss)$/,
                 loader: ExtractTextPlugin.extract({
@@ -69,18 +76,34 @@ module.exports = {
         ]
     },
     plugins: [
+        ...commonConfig.plugins,
         new ExtractTextPlugin({
-            filename: `styles.v${packageJson.version}.css`,
-            publicPath: "/static/"
+            filename: `styles.v${meta.version}.css`,
+            publicPath: debug ? "/" : "/static/"
         }),
         new CleanWebpackPlugin([path.resolve("./web")], {
             root: path.resolve(".")
         }),
-        debug
-            ? new UglifyJSPlugin({
-                parallel: true,
-                test: /main\..*\.js/g
-            })
-            : new Webpack.HotModuleReplacementPlugin()
+        ...(!debug
+            ? [
+                new UglifyJSPlugin({
+                    parallel: true,
+                    test: /main\..*\.js/g
+                })
+            ]
+            : [
+                new HtmlWebpackPlugin({
+                    template: path.resolve("./templates/index.ejs"),
+                    minify: {
+                        minifyJS: false,
+                        minifyCSS: false,
+                        removeComments: false,
+                        collapseWhitespace: false,
+                        trimCustomFragments: false
+                    }
+                }),
+                new Webpack.HotModuleReplacementPlugin()
+            ]
+        )
     ]
 };

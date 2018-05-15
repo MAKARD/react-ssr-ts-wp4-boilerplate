@@ -1,9 +1,10 @@
-const fs = requrie("fs");
-const path = requrie("path");
+const fs = require("fs");
+const path = require("path");
 const Webpack = require("webpack");
 
 const meta = require("../meta.json");
 const debug = process.env.NODE_ENV !== "production";
+const env = debug ? "local" : "production";
 
 const envPath = {
     production: ".env.prod",
@@ -65,7 +66,8 @@ module.exports = {
         new Webpack.NamedModulesPlugin(),
         new Webpack.NodeEnvironmentPlugin(),
         new Webpack.optimize.ModuleConcatenationPlugin(),
-        new webpack.DefinePlugin({
+        new Webpack.DefinePlugin({
+            PORT: JSON.stringify(process.env.PORT),
             BUILD_VERSION: JSON.stringify(meta.version),
             BUILD_TIME: JSON.stringify(new Date().toISOString())
         })
