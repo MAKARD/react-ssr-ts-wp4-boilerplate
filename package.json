@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "serve": "npm run build && webpack --mode production --config=./webpack/webpack.backend.js && ./index.js",    
+    "serve": "npm run build && webpack --mode production --config=./webpack/webpack.backend.js && ./index.js",
     "build": "NODE_ENV=production webpack --mode production --config=./webpack/webpack.frontend.js",
     "start": "webpack-dev-server --mode development --config ./webpack/webpack.frontend.js",
     "lint": "./node_modules/.bin/tslint --exclude '**/*.js' --project ."
@@ -44,6 +44,7 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "source-map-loader": "^0.2.3",
+    "styled-components": "^3.2.6",
     "typescript": "^2.8.3",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^4.8.3",
