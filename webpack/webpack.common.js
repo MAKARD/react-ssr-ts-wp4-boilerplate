@@ -9,7 +9,7 @@ const env = debug ? "local" : "production";
 const envPath = {
     production: ".env.prod",
     test: ".env.test",
-    dev: ".env.dev",
+    dev: ".env.dev"
 }[process.env.NODE_ENV || "dev"];
 
 if (!envPath) {
@@ -67,9 +67,11 @@ module.exports = {
         new Webpack.NodeEnvironmentPlugin(),
         new Webpack.optimize.ModuleConcatenationPlugin(),
         new Webpack.DefinePlugin({
+            DEVELOPMENT: JSON.stringify(debug),
             PORT: JSON.stringify(process.env.PORT),
             BUILD_VERSION: JSON.stringify(meta.version),
-            BUILD_TIME: JSON.stringify(new Date().toISOString())
+            RAVEN_DSN: JSON.stringify(process.env.RAVEN_DSN),
+            BUILD_TIME: JSON.stringify(new Date().toISOString()),
         })
     ]
 };

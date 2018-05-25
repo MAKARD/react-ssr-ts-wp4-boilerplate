@@ -14,10 +14,10 @@ export class Input extends React.PureComponent<InputProps, InputState> {
     };
 
     public render(): React.ReactNode {
-        return <input className={this.props.className} value={this.state.value} onChange={this.handleChange}/>;
+        return <input className={this.props.className} value={this.state.value} onChange={this.handleChange} />;
     }
 
     protected handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({value: event.currentTarget.value});
+        this.setState({ value: event.currentTarget.value });
     }
 }

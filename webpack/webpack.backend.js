@@ -6,7 +6,7 @@ const commonConfig = require("./webpack.common");
 
 module.exports = {
     ...commonConfig,
-    entry: ["@babel/polyfill", path.resolve("./src/server/index.tsx")],
+    entry: ["@babel/polyfill", path.resolve("./src/server/server.ts")],
     output: {
         path: path.resolve("./build"),
         libraryTarget: "commonjs",
@@ -16,17 +16,7 @@ module.exports = {
     externals: ["express"],
     target: "node",
     module: {
-        rules: [
-            ...commonConfig.module.rules,
-            {
-                test: /\.(gif|png|jpe?g|svg|css)$/i,
-                loader: 'file-loader',
-                query: {
-                    name: "[name].[hash:6].[ext]",
-                    emitFile: false,
-                }
-            }
-        ]
+        rules: commonConfig.module.rules
     },
     plugins: [
         ...commonConfig.plugins,

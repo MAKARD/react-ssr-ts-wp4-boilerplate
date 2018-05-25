@@ -1,0 +1,20 @@
+body {
+    overflow: hidden;
+    height: 100%;
+
+    opacity: 0;
+
+    transition: opacity .2s ease;  
+}
+
+body[data-loaded="true"] {
+    overflow: inherit;
+    overflow-x: hidden;
+    height: inherit;
+
+    opacity: 1;
+    
+    #preloader {
+    display: none;
+    }
+}

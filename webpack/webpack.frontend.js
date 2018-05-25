@@ -1,6 +1,8 @@
+const fs = require("fs");
 const path = require("path");
 const Webpack = require("webpack");
 
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
@@ -14,11 +16,15 @@ const sourceMapOptions = {
     sourceMap: debug
 };
 
+if (!fs.existsSync(path.resolve("favicons/favicon-stats.json"))) {
+    throw new Error("Favicons build not found. Run 'npm run build:favicons' first");
+}
+
 module.exports = {
     ...commonConfig,
     devServer: {
         publicPath: "/",
-        contentBase: path.resolve('./web'),
+        contentBase: path.resolve("./web"),
         noInfo: false,
         hot: true,
         inline: true,
@@ -31,8 +37,8 @@ module.exports = {
     ],
     output: {
         filename: `[name].v${meta.version}.js`,
-        path: path.resolve("./web"),
-        publicPath: debug ? "/" : "/static/"
+        publicPath: debug ? "/" : "/static/",        
+        path: path.resolve("./web")
     },
     module: {
         rules: [
@@ -94,6 +100,7 @@ module.exports = {
             : [
                 new HtmlWebpackPlugin({
                     template: path.resolve("./templates/index.ejs"),
+                    version: meta.version,
                     minify: {
                         minifyJS: false,
                         minifyCSS: false,
