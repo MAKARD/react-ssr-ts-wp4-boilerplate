@@ -37,12 +37,25 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                loaders: ["babel-loader", "awesome-typescript-loader"]
+                loaders: [
+                    {
+                        loader: "babel-loader",
+                        options: {
+                            babelrc: false,
+                            extends: path.join(process.cwd(), "./.babelrc")
+                        }
+                    },
+                    "awesome-typescript-loader",
+                ],
             },
             {
                 test: /\.jsx?$/,
                 exclude: [/node_modules/],
-                loader: "babel-loader"
+                loader: "babel-loader",
+                options: {
+                    babelrc: false,
+                    extends: path.join(process.cwd(), "./.babelrc")
+                }
             },
             {
                 enforce: "pre",
